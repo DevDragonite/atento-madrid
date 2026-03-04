@@ -20,10 +20,10 @@ export default function HeroSection() {
         <section
             ref={ref}
             id="hero"
-            className="relative h-screen min-h-[600px] overflow-hidden flex items-center justify-center"
+            className="relative h-screen min-h-[600px] w-full overflow-hidden flex items-center justify-center @container"
         >
             {/* Background image with parallax */}
-            <motion.div className="absolute inset-0 z-0" style={{ y: imageY }}>
+            <motion.div className="absolute inset-0 z-0 bg-background-dark" style={{ y: imageY }}>
                 <Image
                     src="/images/hero.png"
                     alt="Mesa íntima de atento."
@@ -32,83 +32,82 @@ export default function HeroSection() {
                     className="object-cover object-center"
                     sizes="100vw"
                 />
-                {/* Warm overlay */}
-                <div className="absolute inset-0 bg-gradient-to-b from-charcoal/60 via-charcoal/30 to-charcoal/70" />
+                {/* Stitch style dark overlay */}
+                <div
+                    className="absolute inset-0"
+                    style={{ backgroundImage: "linear-gradient(to bottom, rgba(34, 30, 16, 0.4), rgba(34, 30, 16, 0.9))" }}
+                />
             </motion.div>
 
             {/* Content */}
             <motion.div
-                className="relative z-10 text-center px-6 flex flex-col items-center"
+                className="relative z-10 flex h-full flex-col items-center justify-center text-center px-4"
                 style={{ y: textY, opacity }}
             >
-                {/* Eyebrow */}
-                <motion.p
-                    className="font-sans text-xs tracking-[0.22em] uppercase text-cream/60 mb-8"
-                    initial={{ opacity: 0, y: 16 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, delay: 0.6, ease: [0.16, 1, 0.3, 1] }}
-                >
-                    Madrid — Cena privada · Solo 5 invitados
-                </motion.p>
+                <div className="max-w-4xl mx-auto space-y-8 flex flex-col items-center">
+                    {/* Eyebrow */}
+                    <motion.h4
+                        className="text-primary text-xs font-bold tracking-[0.4em] uppercase mb-4"
+                        initial={{ opacity: 0, y: 16 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.8, delay: 0.6, ease: [0.16, 1, 0.3, 1] }}
+                    >
+                        El Ritual del Silencio
+                    </motion.h4>
 
-                {/* Main title */}
-                <motion.h1
-                    className="font-serif font-light text-cream mb-2"
-                    style={{ fontSize: "clamp(5rem, 18vw, 14rem)", lineHeight: 0.85, letterSpacing: "-0.04em" }}
-                    initial={{ opacity: 0, y: 32 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 1, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-                >
-                    atento.
-                </motion.h1>
+                    {/* Main title */}
+                    <motion.h1
+                        className="text-primary font-serif-title text-7xl md:text-9xl font-normal leading-none tracking-tight"
+                        initial={{ opacity: 0, y: 32 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 1, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
+                    >
+                        ATENTO
+                    </motion.h1>
 
-                {/* Divider line */}
-                <motion.div
-                    className="w-px bg-cream/40 my-8"
-                    initial={{ height: 0 }}
-                    animate={{ height: 48 }}
-                    transition={{ duration: 0.8, delay: 1, ease: [0.16, 1, 0.3, 1] }}
-                />
+                    {/* Subtitle */}
+                    <motion.p
+                        className="text-slate-300 text-lg md:text-xl font-light leading-relaxed max-w-2xl mx-auto italic"
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.9, delay: 0.9, ease: [0.16, 1, 0.3, 1] }}
+                    >
+                        Aquí no solo vienes a cenar.<br />
+                        Aquí eres atendido.
+                    </motion.p>
 
-                {/* Subtitle */}
-                <motion.p
-                    className="font-serif italic font-light text-cream/80 max-w-md text-balance text-center"
-                    style={{ fontSize: "clamp(1rem, 2.5vw, 1.5rem)", lineHeight: 1.5 }}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.9, delay: 0.9, ease: [0.16, 1, 0.3, 1] }}
-                >
-                    Aquí no solo vienes a cenar.<br />
-                    Aquí eres atendido.
-                </motion.p>
-
-                {/* CTA */}
-                <motion.div
-                    className="mt-12"
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, delay: 1.2, ease: [0.16, 1, 0.3, 1] }}
-                >
-                    <MagneticButton href="#reservas" className="bg-cream/10 text-cream border border-cream/40 hover:bg-cream hover:text-charcoal transition-colors duration-500">
-                        Solicitar Reserva
-                    </MagneticButton>
-                </motion.div>
+                    {/* CTA */}
+                    <motion.div
+                        className="pt-10"
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.8, delay: 1.2, ease: [0.16, 1, 0.3, 1] }}
+                    >
+                        {/* We use MagneticButton as a wrapper to keep the animation, but style the inner button as Stitch */}
+                        <MagneticButton href="#reservas" className="group relative inline-flex items-center justify-center px-10 py-4 font-bold text-white transition-all duration-200 bg-white/5 backdrop-blur-md border border-primary/30 rounded-full hover:border-primary hover:bg-white/10 active:scale-95 overflow-hidden">
+                            <span className="relative z-10 text-sm tracking-[0.2em] uppercase">Solicitar Reserva</span>
+                            <div className="absolute inset-0 -z-10 bg-gradient-to-r from-primary/0 via-primary/5 to-primary/0 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                        </MagneticButton>
+                    </motion.div>
+                </div>
             </motion.div>
 
-            {/* Scroll indicator */}
+            {/* Scroll indicator - Updated to Stitch style */}
             <motion.div
-                className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3 z-10"
+                className="absolute bottom-10 left-1/2 -translate-x-1/2 z-10"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 2, duration: 1 }}
             >
-                <p className="font-sans text-[10px] tracking-[0.2em] uppercase text-cream/40">Descubrir</p>
                 <motion.div
-                    className="w-px h-10 bg-cream/30"
-                    animate={{ scaleY: [1, 0] }}
-                    transition={{ duration: 1.2, repeat: Infinity, ease: "easeIn" }}
-                    style={{ transformOrigin: "top" }}
-                />
+                    animate={{ y: [0, 10, 0] }}
+                    transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                    className="opacity-50"
+                >
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="var(--color-primary)" className="text-3xl">
+                        <path d="M480-226.67 240-466.67l47.33-47.33L480-321.33l192.67-192.67 47.33 47.33L480-226.67ZM480-496 240-736l47.33-47.33L480-590.67l192.67-192.67 47.33 47.33L480-496Z" />
+                    </svg>
+                </motion.div>
             </motion.div>
         </section>
     );

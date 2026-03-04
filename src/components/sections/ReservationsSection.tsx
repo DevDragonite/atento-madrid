@@ -33,177 +33,153 @@ export default function ReservationsSection() {
     return (
         <section
             id="reservas"
-            className="bg-cream"
-            style={{ paddingTop: "clamp(6rem, 12vw, 10rem)", paddingBottom: "clamp(6rem, 12vw, 10rem)" }}
+            className="bg-background-dark min-h-screen flex flex-col items-center justify-center px-4 py-24 relative overflow-hidden"
         >
-            <div className="max-w-7xl mx-auto px-6 md:px-16">
+            {/* Background elements (subtle gradients/images) */}
+            <div className="absolute inset-0 pointer-events-none opacity-20">
+                <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_center,_var(--color-charcoal)_0%,_transparent_100%)]"></div>
+            </div>
 
-                {/* ── Layout: narrow image column + wide form column ── */}
-                <div className="flex flex-col md:flex-row gap-16 md:gap-24 xl:gap-32 items-stretch">
+            <div className="max-w-4xl w-full relative z-10">
 
-                    {/* LEFT — smaller image panel with heading, slides in from right */}
-                    <motion.div
-                        initial={{ opacity: 0, x: -80 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true, margin: "-60px" }}
-                        transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-                        className="relative overflow-hidden flex-shrink-0 w-full md:w-[38%]"
-                        style={{ minHeight: "clamp(420px, 60vh, 680px)" }}
-                    >
-                        <Image
-                            src="/copas.png"
-                            alt="Copas en mesa de Atento"
-                            fill
-                            className="object-cover object-center"
-                            sizes="(max-width: 768px) 100vw, 38vw"
-                            priority
-                        />
-                        {/* Gradient for heading legibility at bottom */}
-                        <div className="absolute inset-0 bg-gradient-to-t from-charcoal/85 via-charcoal/25 to-transparent" />
+                {/* Hero Heading */}
+                <ScrollReveal className="text-center mb-20">
+                    <span className="text-primary text-xs md:text-sm font-medium tracking-[0.4em] uppercase mb-4 block">Supper Club Clandestino</span>
+                    <h2 className="font-serif-title text-5xl md:text-6xl lg:text-7xl font-light text-slate-100 mb-6 tracking-tight">Solicita tu Acceso</h2>
+                    <p className="text-neutral-gold font-serif-title italic text-xl max-w-2xl mx-auto leading-relaxed">
+                        Las cenas están limitadas a solo cinco comensales. Una sola mesa por noche. Escríbeme tus fechas preferidas y te confirmo disponibilidad en menos de 24 horas.
+                    </p>
+                </ScrollReveal>
 
-                        {/* Heading at the bottom of the image */}
-                        <div className="absolute inset-0 flex flex-col justify-end p-8 md:p-10">
-                            <p className="font-sans text-[11px] tracking-[0.22em] uppercase text-cream/60 mb-5">
-                                — Reservas
-                            </p>
-                            <h2
-                                className="font-serif font-light text-cream leading-tight"
-                                style={{ fontSize: "clamp(2.2rem, 4vw, 3.8rem)", letterSpacing: "-0.03em" }}
+                {/* Reservation Form */}
+                <ScrollReveal delay={0.2} className="relative">
+                    <AnimatePresence mode="wait">
+                        {formState === "success" ? (
+                            <motion.div
+                                key="success"
+                                initial={{ opacity: 0, scale: 0.95 }}
+                                animate={{ opacity: 1, scale: 1 }}
+                                exit={{ opacity: 0 }}
+                                transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+                                className="flex flex-col items-center text-center gap-8 py-16 px-8 border border-primary/20 bg-charcoal/50 backdrop-blur-md rounded-xl"
                             >
-                                Una noche.<br />
-                                <em>Tu mesa.</em>
-                            </h2>
-                        </div>
-                    </motion.div>
+                                <motion.div
+                                    initial={{ scale: 0 }}
+                                    animate={{ scale: 1 }}
+                                    transition={{ type: "spring", stiffness: 200, damping: 15, delay: 0.1 }}
+                                    className="w-16 h-16 rounded-full border border-primary/30 bg-primary/10 flex items-center justify-center text-primary"
+                                >
+                                    <span className="material-symbols-outlined text-3xl">check</span>
+                                </motion.div>
+                                <h3 className="font-serif-title text-3xl md:text-4xl text-slate-100">Solicitud Recibida</h3>
+                                <p className="font-sans text-base leading-relaxed text-slate-400 max-w-md">
+                                    Gracias, <span className="text-primary">{form.name || "querido invitado"}</span>.<br />
+                                    Te escribiré en las próximas 24 horas con la confirmación y las instrucciones de acceso.
+                                </p>
+                                <button
+                                    className="font-sans text-xs tracking-[0.2em] uppercase text-primary hover:text-primary/70 border-b border-primary/30 hover:border-primary/70 transition-colors pb-1 mt-4"
+                                    onClick={() => setFormState("idle")}
+                                >
+                                    Realizar otra solicitud
+                                </button>
+                            </motion.div>
+                        ) : (
+                            <motion.form
+                                key="form"
+                                onSubmit={handleSubmit}
+                                initial={{ opacity: 1 }}
+                                exit={{ opacity: 0 }}
+                                className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-12"
+                            >
+                                <div className="flex flex-col gap-2">
+                                    <label className="text-[10px] uppercase tracking-[0.3em] text-primary/50">Identidad Completa</label>
+                                    <input
+                                        type="text"
+                                        name="name"
+                                        required
+                                        value={form.name}
+                                        onChange={handleChange}
+                                        placeholder="Tu nombre completo"
+                                        className="bg-transparent border-0 border-b border-neutral-gold/30 focus:border-primary focus:ring-0 text-lg font-serif-title placeholder:text-primary/20 text-slate-100 w-full py-3 transition-colors duration-300 outline-none"
+                                    />
+                                </div>
 
-                    {/* RIGHT — full-width form area with generous space */}
-                    <div className="flex-1 flex flex-col justify-center">
+                                <div className="flex flex-col gap-2">
+                                    <label className="text-[10px] uppercase tracking-[0.3em] text-primary/50">Correspondencia Digital</label>
+                                    <input
+                                        type="email"
+                                        name="email"
+                                        required
+                                        value={form.email}
+                                        onChange={handleChange}
+                                        placeholder="hola@ejemplo.com"
+                                        className="bg-transparent border-0 border-b border-neutral-gold/30 focus:border-primary focus:ring-0 text-lg font-serif-title placeholder:text-primary/20 text-slate-100 w-full py-3 transition-colors duration-300 outline-none"
+                                    />
+                                </div>
 
-                        <ScrollReveal delay={0.1}>
-                            <p className="font-sans text-sm leading-relaxed text-warm-gray mb-10 max-w-md">
-                                Las cenas son limitadas a solo cinco comensales. Una sola mesa por noche. Escríbeme tus fechas preferidas y te confirmo disponibilidad en menos de 24 horas.
-                            </p>
-                        </ScrollReveal>
+                                <div className="flex flex-col gap-2">
+                                    <label className="text-[10px] uppercase tracking-[0.3em] text-primary/50">La Velada</label>
+                                    <input
+                                        type="date"
+                                        name="date"
+                                        required
+                                        value={form.date}
+                                        onChange={handleChange}
+                                        className="bg-transparent border-0 border-b border-neutral-gold/30 focus:border-primary focus:ring-0 text-lg font-serif-title text-slate-100 w-full py-3 transition-colors duration-300 outline-none"
+                                        style={{ colorScheme: "dark" }}
+                                    />
+                                </div>
 
-                        <ScrollReveal delay={0.18}>
-                            <div className="flex flex-col gap-4 mb-12">
-                                {[
-                                    "Menú degustación de temporada — precio cerrado",
-                                    "Maridaje de vinos naturales disponible",
-                                    "Adaptación total a intolerancias y alergias",
-                                    "Ubicación compartida al confirmar reserva",
-                                ].map((item) => (
-                                    <div key={item} className="flex items-start gap-4">
-                                        <span className="w-1.5 h-1.5 rounded-full bg-terracotta inline-block mt-1.5 shrink-0" />
-                                        <p className="font-sans text-sm text-warm-gray leading-relaxed">{item}</p>
+                                <div className="flex flex-col gap-2">
+                                    <label className="text-[10px] uppercase tracking-[0.3em] text-primary/50">La Asamblea</label>
+                                    <select
+                                        name="guests"
+                                        value={form.guests}
+                                        onChange={handleChange}
+                                        className="bg-transparent border-0 border-b border-neutral-gold/30 focus:border-primary focus:ring-0 text-lg font-serif-title text-slate-100 w-full py-3 transition-colors duration-300 appearance-none cursor-pointer outline-none"
+                                    >
+                                        {[1, 2, 3, 4, 5].map((n) => (
+                                            <option key={n} value={n} className="bg-background-dark text-slate-100">{n} {n === 1 ? "invitado" : "invitados"}</option>
+                                        ))}
+                                    </select>
+                                </div>
+
+                                <div className="md:col-span-2 flex flex-col gap-2 mt-4">
+                                    <label className="text-[10px] uppercase tracking-[0.3em] text-primary/50">Requisitos Especiales</label>
+                                    <textarea
+                                        name="dietary"
+                                        value={form.dietary}
+                                        onChange={handleChange}
+                                        placeholder="Restricciones alimentarias, alergias o peticiones únicas…"
+                                        rows={2}
+                                        className="bg-transparent border-0 border-b border-neutral-gold/30 focus:border-primary focus:ring-0 text-lg font-serif-title placeholder:text-primary/20 text-slate-100 w-full py-3 resize-none transition-colors duration-300 outline-none"
+                                    />
+                                </div>
+
+                                {/* Submit Action */}
+                                <div className="md:col-span-2 mt-12 flex flex-col items-center">
+                                    <div className="mb-6">
+                                        <MagneticButton onClick={handleSubmit as () => void} variant="primary">
+                                            {formState === "loading" ? (
+                                                <span className="flex items-center gap-3">
+                                                    <motion.span
+                                                        className="w-4 h-4 border border-background-dark/30 border-t-background-dark rounded-full inline-block"
+                                                        animate={{ rotate: 360 }}
+                                                        transition={{ duration: 0.8, repeat: Infinity, ease: "linear" }}
+                                                    />
+                                                    Procesando…
+                                                </span>
+                                            ) : (
+                                                "Solicitar Acceso →"
+                                            )}
+                                        </MagneticButton>
                                     </div>
-                                ))}
-                            </div>
-                        </ScrollReveal>
-
-                        {/* Form */}
-                        <ScrollReveal delay={0.25} className="relative">
-                            <AnimatePresence mode="wait">
-                                {formState === "success" ? (
-                                    <motion.div
-                                        key="success"
-                                        initial={{ opacity: 0, y: 24 }}
-                                        animate={{ opacity: 1, y: 0 }}
-                                        exit={{ opacity: 0 }}
-                                        transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-                                        className="flex flex-col gap-8 py-10"
-                                    >
-                                        <motion.div
-                                            initial={{ scale: 0 }}
-                                            animate={{ scale: 1 }}
-                                            transition={{ type: "spring", stiffness: 200, damping: 15, delay: 0.1 }}
-                                            className="w-14 h-14 rounded-full bg-sage/20 flex items-center justify-center"
-                                        >
-                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#8A9E85" strokeWidth="1.5">
-                                                <path d="M20 6L9 17l-5-5" strokeLinecap="round" strokeLinejoin="round" />
-                                            </svg>
-                                        </motion.div>
-                                        <h3 className="font-serif text-3xl font-light text-charcoal">Solicitud recibida</h3>
-                                        <p className="font-sans text-sm leading-relaxed text-warm-gray">
-                                            Gracias, <span className="text-charcoal">{form.name || "querido invitado"}</span>.<br />
-                                            Te escribiré en las próximas 24 horas con la confirmación.
-                                        </p>
-                                        <button
-                                            className="font-sans text-xs tracking-[0.14em] uppercase text-terracotta hover:text-charcoal transition-colors w-fit"
-                                            onClick={() => setFormState("idle")}
-                                        >
-                                            ← Hacer otra reserva
-                                        </button>
-                                    </motion.div>
-                                ) : (
-                                    <motion.form
-                                        key="form"
-                                        onSubmit={handleSubmit}
-                                        initial={{ opacity: 1 }}
-                                        exit={{ opacity: 0 }}
-                                        className="flex flex-col gap-8 max-w-lg"
-                                    >
-                                        <div className="flex flex-col gap-3">
-                                            <label className="font-sans text-[11px] tracking-[0.16em] uppercase text-warm-gray">Nombre</label>
-                                            <input type="text" name="name" required value={form.name} onChange={handleChange}
-                                                placeholder="Tu nombre"
-                                                className="bg-transparent border-b border-linen focus:border-charcoal transition-colors duration-300 pb-3 font-sans text-sm text-charcoal placeholder:text-warm-gray/40 outline-none" />
-                                        </div>
-
-                                        <div className="flex flex-col gap-3">
-                                            <label className="font-sans text-[11px] tracking-[0.16em] uppercase text-warm-gray">Correo electrónico</label>
-                                            <input type="email" name="email" required value={form.email} onChange={handleChange}
-                                                placeholder="hola@ejemplo.com"
-                                                className="bg-transparent border-b border-linen focus:border-charcoal transition-colors duration-300 pb-3 font-sans text-sm text-charcoal placeholder:text-warm-gray/40 outline-none" />
-                                        </div>
-
-                                        <div className="grid grid-cols-2 gap-6">
-                                            <div className="flex flex-col gap-3">
-                                                <label className="font-sans text-[11px] tracking-[0.16em] uppercase text-warm-gray">Fecha preferida</label>
-                                                <input type="date" name="date" required value={form.date} onChange={handleChange}
-                                                    className="bg-transparent border-b border-linen focus:border-charcoal transition-colors duration-300 pb-3 font-sans text-sm text-charcoal outline-none" />
-                                            </div>
-                                            <div className="flex flex-col gap-3">
-                                                <label className="font-sans text-[11px] tracking-[0.16em] uppercase text-warm-gray">Comensales</label>
-                                                <select name="guests" value={form.guests} onChange={handleChange}
-                                                    className="bg-transparent border-b border-linen focus:border-charcoal transition-colors duration-300 pb-3 font-sans text-sm text-charcoal appearance-none cursor-pointer outline-none">
-                                                    {[1, 2, 3, 4, 5].map((n) => (
-                                                        <option key={n} value={n}>{n} {n === 1 ? "persona" : "personas"}</option>
-                                                    ))}
-                                                </select>
-                                            </div>
-                                        </div>
-
-                                        <div className="flex flex-col gap-3">
-                                            <label className="font-sans text-[11px] tracking-[0.16em] uppercase text-warm-gray">Intolerancias o alergias</label>
-                                            <textarea name="dietary" value={form.dietary} onChange={handleChange}
-                                                placeholder="Cuéntame cualquier restricción alimentaria o preferencia…"
-                                                rows={3}
-                                                className="bg-transparent border-b border-linen focus:border-charcoal transition-colors duration-300 pb-3 font-sans text-sm text-charcoal placeholder:text-warm-gray/40 resize-none outline-none" />
-                                        </div>
-
-                                        <div className="pt-2">
-                                            <MagneticButton onClick={handleSubmit as () => void} variant="primary">
-                                                {formState === "loading" ? (
-                                                    <span className="flex items-center gap-3">
-                                                        <motion.span
-                                                            className="w-4 h-4 border border-cream/50 border-t-cream rounded-full inline-block"
-                                                            animate={{ rotate: 360 }}
-                                                            transition={{ duration: 0.8, repeat: Infinity, ease: "linear" }}
-                                                        />
-                                                        Enviando…
-                                                    </span>
-                                                ) : (
-                                                    "Solicitar Reserva →"
-                                                )}
-                                            </MagneticButton>
-                                        </div>
-                                    </motion.form>
-                                )}
-                            </AnimatePresence>
-                        </ScrollReveal>
-                    </div>
-                </div>
+                                    <p className="font-sans text-[10px] uppercase tracking-[0.2em] text-primary/40">Respuesta habitual en 24 horas mediante invitación privada.</p>
+                                </div>
+                            </motion.form>
+                        )}
+                    </AnimatePresence>
+                </ScrollReveal>
             </div>
         </section>
     );

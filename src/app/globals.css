@@ -13,9 +13,19 @@
   --color-charcoal: #2A2825;
   --color-warm-gray: #7A7570;
 
+  /* Stitch Luxury Colors */
+  --color-primary: #f2b90d;
+  --color-gold-muted: #cbbc90;
+  --color-neutral-gold: #cbbc90;
+  --color-background-dark: #12110b;
+  --color-deep-charcoal: #1a1812;
+  --color-background-light: #f8f8f5;
+
   /* Fonts */
-  --font-serif: var(--font-cormorant), Georgia, serif;
-  --font-sans: var(--font-dm-sans), system-ui, sans-serif;
+  --font-serif: var(--font-playfair), Georgia, serif;
+  --font-sans: var(--font-work-sans), system-ui, sans-serif;
+  --font-display: var(--font-work-sans), system-ui, sans-serif;
+  --font-serif-title: var(--font-playfair), Georgia, serif;
 
   /* Font sizes — using static values (clamp not supported in @theme) */
   --text-display-xl: 10rem;
@@ -38,9 +48,9 @@ html {
 }
 
 body {
-  background-color: var(--color-cream);
-  color: var(--color-charcoal);
-  font-family: var(--font-dm-sans), system-ui, sans-serif;
+  background-color: var(--color-background-dark);
+  color: var(--color-cream);
+  font-family: var(--font-work-sans), system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;

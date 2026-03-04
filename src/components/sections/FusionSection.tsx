@@ -172,80 +172,110 @@ function InfiniteCarousel() {
 
 export default function FusionSection() {
     return (
-        <section id="fusion" className="bg-linen" style={{ paddingTop: "clamp(6rem, 14vw, 12rem)", paddingBottom: "clamp(6rem, 14vw, 12rem)" }}>
-            <div className="max-w-7xl mx-auto px-6 md:px-16">
-
-                {/* Header — heading full width, description below with room to breathe */}
-                <div className="mb-20">
-                    <ScrollReveal>
-                        <p className="font-sans text-xs tracking-[0.18em] uppercase text-warm-gray mb-8">— El Menú</p>
-                        <h2
-                            className="font-serif font-light text-charcoal leading-tight mb-10"
-                            style={{ fontSize: "clamp(2.5rem, 6vw, 5rem)", letterSpacing: "-0.025em" }}
-                        >
-                            Una sola propuesta.<br />
-                            <em>Cinco momentos.</em>
-                        </h2>
-                    </ScrollReveal>
-
-                    <ScrollReveal delay={0.15}>
-                        <p className="font-sans text-base leading-relaxed text-warm-gray max-w-2xl">
-                            Sin carta. Sin elección. Solo la mejor versión de lo que cada temporada
-                            te puede dar — interpretada con técnica española y alma asiática.
-                        </p>
-                    </ScrollReveal>
-                </div>
-
-                {/* 3-column image grid */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 mb-20">
-                    {menuItems.map((dish, i) => (
-                        <TiltCard
-                            key={dish.title}
-                            src={dish.src}
-                            alt={dish.alt}
-                            course={dish.course}
-                            title={dish.title}
-                            desc={dish.desc}
-                            delay={i * 0.1}
+        <section id="fusion" className="bg-background-dark overflow-hidden flex flex-col pt-20 lg:pt-0">
+            {/* Split-Screen Hero Section */}
+            <div className="flex flex-col lg:flex-row min-h-screen">
+                {/* Left Side: Visual */}
+                <div className="relative w-full lg:w-1/2 h-[50vh] lg:h-screen lg:sticky lg:top-0 order-2 lg:order-1">
+                    <div className="absolute inset-0">
+                        <Image
+                            src="/comida.png"
+                            alt="Fusión española tailandesa"
+                            fill
+                            className="object-cover"
+                            sizes="(max-width: 1024px) 100vw, 50vw"
                         />
-                    ))}
+                    </div>
+                    <div className="absolute inset-0 bg-black/40"></div>
+                    <div className="absolute bottom-12 left-12 hidden lg:block">
+                        <div className="flex items-center gap-4 text-primary bg-background-dark/80 backdrop-blur-md px-6 py-3 rounded-full border border-primary/20">
+                            <span className="w-8 h-px bg-primary"></span>
+                            <span className="text-xs uppercase tracking-widest font-bold">El Arte de Emplatar</span>
+                        </div>
+                    </div>
                 </div>
 
-                {/* Sorbete + Postre — text-only cards — fixed spacing */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 border-t border-charcoal/10 pt-12 mb-20">
-                    {extras.map((item, i) => (
-                        <ScrollReveal key={item.title} delay={i * 0.1}>
-                            <div className="bg-cream/60 px-8 py-10 flex flex-col gap-3">
-                                <span className="font-sans text-[10px] tracking-[0.2em] uppercase text-terracotta">{item.course}</span>
-                                <h3 className="font-serif text-2xl md:text-3xl font-light text-charcoal">{item.title}</h3>
-                                <p className="font-sans text-sm leading-relaxed text-warm-gray">{item.desc}</p>
+                {/* Right Side: Editorial Content */}
+                <div className="w-full lg:w-1/2 flex flex-col justify-center bg-background-dark px-8 py-20 lg:p-24 xl:p-32 order-1 lg:order-2">
+                    <div className="max-w-xl mx-auto lg:mx-0 space-y-12">
+                        {/* Header Details */}
+                        <ScrollReveal>
+                            <div className="space-y-6">
+                                <div className="flex items-center gap-3 text-primary">
+                                    <svg className="size-5" fill="currentColor" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+                                        <path clipRule="evenodd" d="M12.0799 24L4 19.2479L9.95537 8.75216L18.04 13.4961L18.0446 4H29.9554L29.96 13.4961L38.0446 8.75216L44 19.2479L35.92 24L44 28.7521L38.0446 39.2479L29.96 34.5039L29.9554 44H18.0446L18.04 34.5039L9.95537 39.2479L4 28.7521L12.0799 24Z" fillRule="evenodd"></path>
+                                    </svg>
+                                    <span className="text-xs font-bold tracking-[0.3em] uppercase">El Secreto Mejor Guardado</span>
+                                </div>
+
+                                <h2 className="font-serif-title text-5xl md:text-6xl text-slate-100 leading-[1.1] tracking-tight">
+                                    Una sola propuesta.<br />
+                                    <span className="italic text-neutral-gold">Cinco momentos.</span>
+                                </h2>
+                                <div className="w-20 h-[2px] bg-primary/40"></div>
                             </div>
                         </ScrollReveal>
-                    ))}
-                </div>
 
-                {/* Philosophy quote — separated from extras with generous space */}
-                <ScrollReveal delay={0.2}>
-                    <div className="border-t border-charcoal/10 pt-16 text-center">
-                        <blockquote
-                            className="font-serif italic text-charcoal/40 max-w-2xl mx-auto"
-                            style={{ fontSize: "clamp(1.1rem, 2.5vw, 1.8rem)", lineHeight: 1.6 }}
-                        >
-                            &ldquo;La buena comida no debería ser inaccesible ni algo distante.&rdquo;
-                        </blockquote>
-                        <p className="font-sans text-xs tracking-[0.14em] uppercase text-warm-gray mt-5">— Antonio</p>
+                        {/* Description */}
+                        <ScrollReveal delay={0.1}>
+                            <p className="text-lg lg:text-xl text-neutral-gold/90 font-light leading-relaxed">
+                                Sin carta. Sin elección. Solo la mejor versión de lo que cada temporada
+                                te puede dar — interpretada con técnica española y alma asiática.
+                            </p>
+                        </ScrollReveal>
+
+                        {/* Menu Items (Replacing TiltCard) */}
+                        <div className="space-y-12 md:space-y-10 pt-8 lg:pt-12">
+                            {menuItems.map((dish, i) => (
+                                <ScrollReveal key={dish.title} delay={0.1 + (i * 0.1)}>
+                                    <div className="group border-l-2 border-primary/30 pl-5 md:pl-6 hover:border-primary transition-colors duration-300">
+                                        <span className="font-sans text-[10px] md:text-xs tracking-[0.25em] uppercase text-primary/80 mb-2 block">{dish.course}</span>
+                                        <h3 className="font-serif-title text-2xl md:text-3xl text-slate-100 mb-3 group-hover:text-white transition-colors leading-tight">{dish.title}</h3>
+                                        <p className="font-sans text-[15px] md:text-base leading-relaxed text-slate-400/90 group-hover:text-slate-300 transition-colors">{dish.desc}</p>
+                                    </div>
+                                </ScrollReveal>
+                            ))}
+
+                            {extras.map((item, i) => (
+                                <ScrollReveal key={item.title} delay={0.4 + (i * 0.1)}>
+                                    <div className="group border-l-2 border-primary/30 pl-5 md:pl-6 hover:border-primary transition-colors duration-300">
+                                        <span className="font-sans text-[10px] md:text-xs tracking-[0.25em] uppercase text-primary/80 mb-2 block">{item.course}</span>
+                                        <h3 className="font-serif-title text-2xl md:text-3xl text-slate-100 mb-3 group-hover:text-white transition-colors leading-tight">{item.title}</h3>
+                                        <p className="font-sans text-[15px] md:text-base leading-relaxed text-slate-400/90 group-hover:text-slate-300 transition-colors">{item.desc}</p>
+                                    </div>
+                                </ScrollReveal>
+                            ))}
+                        </div>
+
                     </div>
-                </ScrollReveal>
+                </div>
             </div>
 
-            {/* ── Infinite plates carousel — full width ── */}
-            <div className="mt-20">
+            {/* Philosophy Strip */}
+            <ScrollReveal className="w-full">
+                <div className="bg-charcoal py-16 border-y border-primary/10">
+                    <div className="max-w-[960px] mx-auto px-6 text-center space-y-4">
+                        <h4 className="text-primary text-sm font-bold tracking-[0.2em] uppercase">Nuestra Filosofía</h4>
+                        <p className="font-serif-title text-2xl md:text-3xl text-slate-200 italic">
+                            &quot;La buena comida no debería ser inaccesible ni algo distante.&quot;
+                        </p>
+                    </div>
+                </div>
+            </ScrollReveal>
+
+            {/* Infinite plates carousel */}
+            <div className="py-20 bg-background-dark">
                 <ScrollReveal>
-                    <p className="font-sans text-xs tracking-[0.18em] uppercase text-warm-gray text-center mb-4 px-6">
-                        — Nuestros platos
+                    <p className="font-sans text-xs tracking-[0.2em] uppercase text-neutral-gold text-center mb-8 px-6">
+                        — Platos de Temporada
                     </p>
                 </ScrollReveal>
-                <InfiniteCarousel />
+                <div className="relative">
+                    {/* Shadow overlays for dark mode */}
+                    <div className="absolute left-0 top-0 h-full w-20 md:w-32 z-10 bg-gradient-to-r from-background-dark to-transparent pointer-events-none" />
+                    <div className="absolute right-0 top-0 h-full w-20 md:w-32 z-10 bg-gradient-to-l from-background-dark to-transparent pointer-events-none" />
+                    <InfiniteCarousel />
+                </div>
             </div>
         </section>
     );

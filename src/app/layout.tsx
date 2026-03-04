@@ -1,19 +1,19 @@
 import type { Metadata } from "next";
-import { Cormorant_Garamond, DM_Sans } from "next/font/google";
+import { Playfair_Display, Work_Sans } from "next/font/google";
 import "./globals.css";
 
-const cormorant = Cormorant_Garamond({
+const playfair = Playfair_Display({
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
+  weight: ["400", "500", "600", "700"],
   style: ["normal", "italic"],
-  variable: "--font-cormorant",
+  variable: "--font-playfair",
   display: "swap",
 });
 
-const dmSans = DM_Sans({
+const workSans = Work_Sans({
   subsets: ["latin"],
-  weight: ["300", "400", "500"],
-  variable: "--font-dm-sans",
+  weight: ["300", "400", "500", "700", "900"],
+  variable: "--font-work-sans",
   display: "swap",
 });
 
@@ -24,22 +24,7 @@ export const metadata: Metadata = {
   keywords: [
     "supper club Madrid",
     "cena privada Madrid",
-    "restaurante privado",
-    "fusión española tailandesa",
-    "experiencia gastronómica",
-    "atento Madrid",
   ],
-  openGraph: {
-    title: "atento. — experiencia culinaria privada",
-    description:
-      "Una cena íntima. Una fusión audaz. Un hogar convertido en escenario.",
-    type: "website",
-    locale: "es_ES",
-  },
-};
-
-export const viewport = {
-  themeColor: "#FAF6F0",
 };
 
 export default function RootLayout({
@@ -48,8 +33,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="es" className={`${cormorant.variable} ${dmSans.variable}`}>
-      <body className="antialiased">{children}</body>
+    <html lang="es" className="dark">
+      <body className={`${playfair.variable} ${workSans.variable} font-sans antialiased text-slate-100 bg-background-dark`}>
+        {children}
+      </body>
     </html>
   );
 }

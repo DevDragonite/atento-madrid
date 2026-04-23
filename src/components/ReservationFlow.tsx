@@ -468,7 +468,7 @@ function StepDate({
     <StepWrap>
       <StepTitle
         question="¿Cuándo te gustaría?"
-        helper="Elige la noche que tengas en mente. Antonio confirmará disponibilidad contigo."
+        helper="Elige la noche que tengas en mente. Antonio y Mila confirmarán disponibilidad contigo."
       />
       <Field label="Fecha preferida">
         <input
@@ -701,8 +701,8 @@ function StepPreferences({
   return (
     <StepWrap>
       <StepTitle
-        question="¿Cómo os apetece la noche?"
-        helper="Desde entregaros al criterio de Antonio hasta afinar algo específico."
+        question="¿Cómo les provoca la noche?"
+        helper="Desde dejarles todo a su criterio hasta afinar algo específico."
       />
       <Field label="La experiencia">
         <OptionList
@@ -714,7 +714,7 @@ function StepPreferences({
             {
               v: "surprise",
               label: "Sorpréndanme",
-              desc: "Antonio elige el menú según la temporada.",
+              desc: "Antonio y Mila eligen el menú según la temporada.",
             },
             {
               v: "preference",
@@ -735,7 +735,7 @@ function StepPreferences({
         />
       </Field>
       {data.experienceType === "preference" && (
-        <Field label="Cuéntanos qué os apetece">
+        <Field label="Cuéntanos qué les provoca">
           <textarea
             value={data.foodPreferences}
             onChange={(e) => upd("foodPreferences", e.target.value)}
@@ -752,7 +752,7 @@ function StepPreferences({
             upd("winePreference", v as FormData["winePreference"])
           }
           options={[
-            { v: "pairing", label: "Maridaje completo", desc: "Antonio elige el vino para cada plato." },
+            { v: "pairing", label: "Maridaje completo", desc: "Antonio y Mila eligen el vino para cada plato." },
             { v: "red", label: "Tintos", desc: "" },
             { v: "white", label: "Blancos", desc: "" },
             { v: "rose", label: "Rosados", desc: "" },
@@ -787,7 +787,7 @@ function StepContact({
     <StepWrap>
       <StepTitle
         question="¿Cómo te contactamos?"
-        helper="Antonio te escribirá personalmente para cerrar detalles."
+        helper="Antonio o Mila te escribirán personalmente para cerrar detalles."
       />
       <Field label="Correo electrónico">
         <input
@@ -895,7 +895,7 @@ function StepReview({
     <StepWrap>
       <StepTitle
         question="¿Todo bien?"
-        helper="Revisa antes de enviar. Antonio recibirá esto y te escribirá personalmente."
+        helper="Revisa antes de enviar. Antonio y Mila recibirán tu carta y te escribirán personalmente."
       />
       <ReviewGroup title="Fecha">
         <ReviewRow label="Preferida" value={data.eventDate} />
@@ -983,7 +983,7 @@ function StepSending() {
             fontFamily: "var(--font-work-sans, sans-serif)",
           }}
         >
-          Enviando tu carta a Antonio
+          Enviando tu carta a Antonio y Mila
         </motion.p>
       </div>
     </StepWrap>
@@ -1042,8 +1042,8 @@ function StepSent({ guestName, onClose }: { guestName: string; onClose: () => vo
             margin: "0 auto 32px",
           }}
         >
-          Antonio ha recibido tu carta personal. Te escribirá en los próximos minutos
-          — asegúrate de tener cerca tu WhatsApp.
+          Antonio y Mila han recibido tu carta personal. Te escribirán en los próximos
+          minutos — asegúrate de tener cerca tu WhatsApp.
         </p>
         <button
           onClick={onClose}

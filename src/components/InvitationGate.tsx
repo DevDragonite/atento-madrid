@@ -389,7 +389,7 @@ function InstagramCTA({
           fontFamily: "var(--font-work-sans, sans-serif)",
         }}
       >
-        Escríbenos por Instagram y Antonio te enviará tu carta con tu código único.
+        Escríbenos por Instagram y Antonio o Mila te enviarán tu carta con tu código único.
       </p>
       <a
         href={INSTAGRAM_URL}
@@ -515,7 +515,7 @@ function InvalidNotFound({ code, onRetry }: { code: string; onRetry: () => void 
           fontFamily: "var(--font-work-sans, sans-serif)",
         }}
       >
-        Verifica que lo hayas escrito exactamente como te lo envió Antonio, o escríbenos por Instagram si crees que hay un error.
+        Verifica que lo hayas escrito exactamente como te lo enviaron, o escríbenos por Instagram si crees que hay un error.
       </p>
       <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
         <button onClick={onRetry} style={primaryBtn()}
@@ -584,7 +584,7 @@ function InvalidExpired({ onWrite }: { onWrite: () => void }) {
           fontFamily: "var(--font-work-sans, sans-serif)",
         }}
       >
-        Esta invitación ya pasó su fecha. Si quieres reservar otra noche con Antonio, escríbele y te enviará una nueva carta.
+        Esta invitación ya pasó su fecha. Si quieres reservar otra noche, escríbenos por Instagram y te enviaremos una nueva carta.
       </p>
       <button onClick={onWrite} style={primaryBtn()}
         onMouseEnter={(e) => (e.currentTarget.style.background = "#a47551")}
@@ -592,7 +592,7 @@ function InvalidExpired({ onWrite }: { onWrite: () => void }) {
       >
         <span style={{ display: "inline-flex", alignItems: "center", gap: 10 }}>
           <InstagramIcon />
-          Escribir a Antonio
+          Escribirnos en Instagram
         </span>
       </button>
     </motion.div>

@@ -117,7 +117,7 @@ const HOTSPOTS: Hotspot[] = [
     label: "Tu silla",
     sublabel: "RESERVA TU NOCHE",
     content:
-      "Déjanos saber qué noche tienes en mente, cuántos sois y tus preferencias. Antonio se pondrá en contacto contigo para cerrar los detalles.",
+      "Déjanos saber qué noche tienes en mente, cuántos son y tus preferencias. Antonio y Mila se pondrán en contacto contigo para cerrar los detalles.",
     image: "/images/Atento_Catering-17.jpg",
     focus: "50% 50%",
     accentColor: "#8b6a42",
@@ -792,12 +792,12 @@ function HotspotDetail({ hotspot, onClose }: { hotspot: Hotspot; onClose: () => 
             transition={{ duration: 0.8, delay: 0.95 }}
           >
             <p style={{ color: "rgba(245,240,232,0.9)", fontSize: "0.95rem", marginBottom: 28, lineHeight: 1.75, fontFamily: "var(--font-work-sans, sans-serif)", fontWeight: 300 }}>
-              Déjanos tus datos y Antonio se pondrá en contacto contigo para cerrar los detalles de tu noche.
+              Déjanos tus datos y Antonio o Mila se pondrán en contacto contigo para cerrar los detalles de tu noche.
             </p>
             <form
               onSubmit={(e) => {
                 e.preventDefault();
-                alert("Reserva solicitada. Antonio te contactará pronto.");
+                alert("Reserva solicitada. Antonio o Mila te contactarán pronto.");
                 onClose();
               }}
               style={{ display: "flex", flexDirection: "column", gap: 16 }}

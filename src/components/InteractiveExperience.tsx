@@ -882,12 +882,12 @@ export default function InteractiveExperience({ initialGuestName }: InteractiveE
                     fontFamily: "var(--font-work-sans, sans-serif)",
                     fontWeight: 300,
                   }}>
-                    Déjanos tus datos y Antonio se pondrá en contacto contigo para cerrar los detalles de tu noche.
+                    Déjanos tus datos y Antonio o Mila se pondrán en contacto contigo para cerrar los detalles de tu noche.
                   </p>
                   <form
                     onSubmit={(e) => {
                       e.preventDefault();
-                      alert("Reserva solicitada. Antonio te contactará pronto.");
+                      alert("Reserva solicitada. Antonio o Mila te contactarán pronto.");
                       setActiveHotspot(null);
                     }}
                     style={{ display: "flex", flexDirection: "column", gap: 16 }}

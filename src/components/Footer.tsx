@@ -78,7 +78,7 @@ export default function Footer() {
                         © {new Date().getFullYear()} atento. — Madrid, España
                     </p>
                     <p className="font-sans text-xs text-cream/25">
-                        Con cariño y mucha citronela. — Antonio
+                        Con cariño y mucha citronela. — Antonio &amp; Mila
                     </p>
                 </div>
             </div>

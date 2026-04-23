@@ -157,7 +157,7 @@ function experienceLabel(
   prefs?: string
 ): string {
   const map: Record<string, string> = {
-    surprise: "Sorpréndanme — Antonio decide",
+    surprise: "Sorpréndanme — Antonio y Mila deciden",
     preference: prefs ? `Preferencias: ${prefs}` : "Con preferencias",
     "full-tasting": "Menú degustación completo",
     "short-menu": "Menú corto",
@@ -171,7 +171,7 @@ function wineLabel(w: ReservationData["winePreference"]): string {
     white: "Blancos",
     rose: "Rosados",
     sparkling: "Espumosos",
-    pairing: "Maridaje completo de Antonio",
+    pairing: "Maridaje completo de la casa",
     none: "Sin alcohol",
   };
   return map[w] ?? w;

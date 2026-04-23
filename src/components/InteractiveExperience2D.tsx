@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence, useMotionValue, useSpring } from "framer-motion";
 import Image from "next/image";
 import ReservationFlow from "@/components/ReservationFlow";
+import MenuProposals from "@/components/MenuProposals";
 
 /* ═══════════════════════════════════════════════════════════════════
    ATENTO — Plano arquitectónico interactivo (vista cenital)
@@ -835,21 +836,28 @@ function HotspotDetail({ hotspot, onClose }: { hotspot: Hotspot; onClose: () => 
             </form>
           </motion.div>
         ) : (
-          <motion.p
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.9, delay: 0.95 }}
-            style={{
-              fontSize: "clamp(0.95rem, 1.2vw, 1.08rem)",
-              lineHeight: 1.9,
-              color: "rgba(248, 240, 224, 0.9)",
-              fontFamily: "var(--font-work-sans, sans-serif)",
-              fontWeight: 300,
-              textShadow: "0 1px 10px rgba(0,0,0,0.4)",
-            }}
-          >
-            {hotspot.content}
-          </motion.p>
+          <>
+            <motion.p
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.9, delay: 0.95 }}
+              style={{
+                fontSize: "clamp(0.95rem, 1.2vw, 1.08rem)",
+                lineHeight: 1.9,
+                color: "rgba(248, 240, 224, 0.9)",
+                fontFamily: "var(--font-work-sans, sans-serif)",
+                fontWeight: 300,
+                textShadow: "0 1px 10px rgba(0,0,0,0.4)",
+              }}
+            >
+              {hotspot.content}
+            </motion.p>
+            {/* Menús reales preparados — aparecen en "El plato" como
+                prueba concreta del estilo de cocina */}
+            {hotspot.id === "plato" && (
+              <MenuProposals accentColor={hotspot.accentColor} />
+            )}
+          </>
         )}
       </div>
     </motion.div>

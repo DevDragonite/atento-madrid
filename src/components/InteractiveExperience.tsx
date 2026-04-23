@@ -10,6 +10,7 @@ import SceneContent from "./three/SceneContent";
 import type { ViewpointKey } from "./three/SceneContent";
 import * as THREE from "three";
 import { useThree, useFrame } from "@react-three/fiber";
+import MenuProposals from "@/components/MenuProposals";
 
 /* ── Slideshow de la sala galería (componente standalone) ── */
 function GallerySlideshow() {
@@ -929,21 +930,27 @@ export default function InteractiveExperience({ initialGuestName }: InteractiveE
                   </form>
                 </motion.div>
               ) : (
-                <motion.p
-                  initial={{ opacity: 0, y: 15 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.9, delay: 0.95 }}
-                  style={{
-                    fontSize: "clamp(0.95rem, 1.2vw, 1.08rem)",
-                    lineHeight: 1.9,
-                    color: "rgba(248, 240, 224, 0.9)",
-                    fontFamily: "var(--font-work-sans, sans-serif)",
-                    fontWeight: 300,
-                    textShadow: "0 1px 10px rgba(0,0,0,0.4)",
-                  }}
-                >
-                  {active.content}
-                </motion.p>
+                <>
+                  <motion.p
+                    initial={{ opacity: 0, y: 15 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.9, delay: 0.95 }}
+                    style={{
+                      fontSize: "clamp(0.95rem, 1.2vw, 1.08rem)",
+                      lineHeight: 1.9,
+                      color: "rgba(248, 240, 224, 0.9)",
+                      fontFamily: "var(--font-work-sans, sans-serif)",
+                      fontWeight: 300,
+                      textShadow: "0 1px 10px rgba(0,0,0,0.4)",
+                    }}
+                  >
+                    {active.content}
+                  </motion.p>
+                  {/* Menús reales preparados — visibles solo en "El plato" */}
+                  {active.id === "plate" && (
+                    <MenuProposals accentColor={active.color} />
+                  )}
+                </>
               )}
             </div>
           </motion.div>

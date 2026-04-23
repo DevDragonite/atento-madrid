@@ -67,6 +67,7 @@ export type ViewpointKey =
   | "plate"
   | "wine"
   | "candle"
+  | "gallery"
   | "ritual";
 
 interface Viewpoint {

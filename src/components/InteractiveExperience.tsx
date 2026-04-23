@@ -413,9 +413,9 @@ export default function InteractiveExperience({ initialGuestName }: InteractiveE
                 luminanceSmoothing={0.5}
                 mipmapBlur
               />
-              {quality === "ultra" && (
+              {(quality === "ultra" ? (
                 <DynamicDOF activeHotspot={activeHotspot} quality={quality} />
-              )}
+              ) : null) as any}
               <Vignette eskil={false} offset={0.25} darkness={0.85} />
             </EffectComposer>
           )}

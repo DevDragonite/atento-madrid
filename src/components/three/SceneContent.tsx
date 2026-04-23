@@ -532,7 +532,7 @@ function Chandelier({ position, isHovered }: { position: [number, number, number
     const hoverOffsetZ = isHovered ? Math.sin(t * 1.5) * 0.08 : 0;
     const hoverOffsetX = isHovered ? Math.cos(t * 1.2) * 0.04 : 0;
 
-    easing.damp3(groupRef.current.rotation, [Math.sin(t*0.5)*0.01 + hoverOffsetZ, groupRef.current.rotation.y, Math.cos(t*0.3)*0.01 + hoverOffsetX], 0.5, delta);
+    easing.dampE(groupRef.current.rotation, [Math.sin(t*0.5)*0.01 + hoverOffsetZ, groupRef.current.rotation.y, Math.cos(t*0.3)*0.01 + hoverOffsetX], 0.5, delta);
   });
 
   return (

@@ -3,7 +3,7 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   reactStrictMode: true,
   images: {
-    domains: [],
+    domains: ["images.unsplash.com"],
     localPatterns: [
       {
         pathname: "/images/**",

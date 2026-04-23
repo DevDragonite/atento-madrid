@@ -13,13 +13,13 @@
   --color-charcoal: #2A2825;
   --color-warm-gray: #7A7570;
 
-  /* Stitch Luxury Colors */
-  --color-primary: #f2b90d;
-  --color-gold-muted: #cbbc90;
-  --color-neutral-gold: #cbbc90;
-  --color-background-dark: #12110b;
-  --color-deep-charcoal: #1a1812;
-  --color-background-light: #f8f8f5;
+  /* Warm Luxury Supper Club Colors */
+  --color-primary: #D4A373; /* Warm Copper / Gold */
+  --color-gold-muted: #BC8B5D; 
+  --color-neutral-gold: #EFE5DC; /* Creamy Text */
+  --color-background-dark: #120D0A; /* Espresso Dark */
+  --color-deep-charcoal: #1C1512; /* Rich Brown Charcoal */
+  --color-background-light: #2A211D;
 
   /* Fonts */
   --font-serif: var(--font-playfair), Georgia, serif;
@@ -48,26 +48,25 @@ html {
 }
 
 body {
-  background-color: var(--color-background-dark);
+  /* Radial gradient de viñeta para eliminar el color super plano */
+  background: radial-gradient(circle at 50% 30%, rgba(42, 33, 29, 0.4) 0%, var(--color-background-dark) 80%);
+  background-color: var(--color-background-dark); 
   color: var(--color-cream);
   font-family: var(--font-work-sans), system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
+  min-height: 100vh;
 }
 
 /* ─── Custom scrollbar ─────────────────────────── */
 ::-webkit-scrollbar {
-  width: 5px;
+  display: none;
 }
 
-::-webkit-scrollbar-track {
-  background: var(--color-linen);
-}
-
-::-webkit-scrollbar-thumb {
-  background: var(--color-sage);
-  border-radius: 3px;
+::selection {
+  background: var(--color-primary);
+  color: var(--color-background-dark);
 }
 
 /* ─── Film grain overlay ───────────────────────── */
@@ -77,7 +76,7 @@ body::before {
   inset: 0;
   pointer-events: none;
   z-index: 9999;
-  opacity: 0.028;
+  opacity: 0.05; /* Texture Awwwards-tier visible pero elegante */
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
   background-size: 200px 200px;
 }

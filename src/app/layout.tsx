@@ -27,6 +27,8 @@ export const metadata: Metadata = {
   ],
 };
 
+import CustomCursor from "@/components/CustomCursor";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -34,7 +36,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es" className="dark">
-      <body className={`${playfair.variable} ${workSans.variable} font-sans antialiased text-slate-100 bg-background-dark`}>
+      <body
+        className={`${playfair.variable} ${workSans.variable} font-sans antialiased`}
+        style={{ overflow: "hidden", margin: 0, padding: 0, height: "100vh" }}
+      >
+        <CustomCursor />
         {children}
       </body>
     </html>

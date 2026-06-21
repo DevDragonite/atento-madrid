@@ -19,6 +19,11 @@ const workSans = Work_Sans({
 
 export const metadata: Metadata = {
   title: "atento. — experiencia culinaria privada en Madrid",
+  appleWebApp: {
+    title: "atento.",
+    capable: true,
+    statusBarStyle: "black",
+  },
   description:
     "Una cena íntima y sofisticada en casa. Fusión de alta cocina española y tailandesa. Supper club privado en Madrid. Solicita tu reserva.",
   keywords: [
